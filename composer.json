@@ -1,0 +1,21 @@
+{
+    "name": "swew/dd",
+    "type": "library",
+    "description": "The simplest way to debug variables. As in Laravel.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "AVIL13",
+            "email": "avil@swew.app"
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "files": [
+            "src/dd.php"
+        ]
+    }
+}
