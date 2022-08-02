@@ -7,5 +7,5 @@ The simplest way to debug variables. As in Laravel.
 # Installation
 
 ```sh
-composer
+composer require swew/dd
 ```
