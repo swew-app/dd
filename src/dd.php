@@ -84,9 +84,26 @@ if (!function_exists('__dump')) {
 }
 
 if (!function_exists('__dump_trace')) {
-    function __dump_trace(): void
+    function __dump_trace(bool $isFull): void
     {
         $backtrace = array_slice(debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT), 2);
+
+        if ($isFull) {
+
+            ob_start();
+            echo "\n\n";
+            var_dump($backtrace);
+            echo "\n";
+            $str = ob_get_clean();
+
+            if (defined('STDIN')) {
+                echo $str;
+                return;
+            }
+
+            echo '<pre>' . $str . '</pre>';
+        }
+
         $formattedTrace = [''];
 
         foreach ($backtrace as $v) {
@@ -148,7 +165,17 @@ if (!function_exists('dds')) {
     {
         $args = func_get_args();
         __dump(...$args);
-        __dump_trace();
+        __dump_trace(false);
+        die(0);
+    }
+}
+
+if (!function_exists('ddt')) {
+    function ddt(): void
+    {
+        $args = func_get_args();
+        __dump(...$args);
+        __dump_trace(true);
         die(0);
     }
 }

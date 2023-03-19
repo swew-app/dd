@@ -27,6 +27,7 @@ composer require swew/dd
 ```php
 d($v);   // Dump and continue
 dd($v);  // Dump and exit
-dds($v); // Dump, get stack trace and exit
+dds($v); // Dump, get short stack trace and exit
+ddt($v); // Dump, get full stack trace and exit
 
 ```
