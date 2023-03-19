@@ -21,3 +21,12 @@ The simplest way to debug variables. As in Laravel.
 ```sh
 composer require swew/dd
 ```
+
+# Usage
+
+```php
+d($v);   // Dump and continue
+dd($v);  // Dump and exit
+dds($v); // Dump, get stack trace and exit
+
+```
