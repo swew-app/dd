@@ -50,26 +50,20 @@ if (!function_exists('__dump')) {
     function __dump(): void
     {
         $str = '';
-        try {
-            foreach (func_get_args() as $x) {
-                $str = $str . "\n" . var_export($x, true);
-            }
-        } catch (Exception) {
-            ob_start();
-            foreach (func_get_args() as $x) {
-                echo "\n";
-                var_dump($x);
-            }
-            $str = ob_get_clean();
+
+        ob_start();
+        foreach (func_get_args() as $x) {
+            var_dump($x);
+            echo PHP_EOL . PHP_EOL;
         }
+        $str = ob_get_clean();
 
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
         $line = $backtrace[1]['line'];
         $file = $backtrace[1]['file'];
 
         if (defined('STDIN')) {
-            echo "\n 🔍\033[0;33m ⮕ \033[0;36m$file\033[90m:$line\033[0m\n";
-            echo $str . "\n";
+            echo PHP_EOL . "🔍\033[0;33m ⮕ \033[0;36m{$file}\033[90m:{$line}\033[0m" . PHP_EOL . $str . PHP_EOL;
             return;
         }
 
@@ -78,8 +72,7 @@ if (!function_exists('__dump')) {
             '<b style="color:#888">[</b><span style="color:#17661c">$1</span><b style="color:#888">]</b> <span style="color:#999">=></span>',
             $str
         );
-        echo "<pre> 🔍 >>> $file:$line \n";
-        echo $str . "</pre>";
+        echo "<pre>🔍 ⮕ {$file}:{$line}\n{$str}\n</pre>";
     }
 }
 
@@ -91,10 +84,10 @@ if (!function_exists('__dump_trace')) {
         if ($isFull) {
 
             ob_start();
-            echo "\n\n";
             var_dump($backtrace);
-            echo "\n";
+            echo PHP_EOL . PHP_EOL;
             $str = ob_get_clean();
+            echo PHP_EOL;
 
             if (defined('STDIN')) {
                 echo $str;
