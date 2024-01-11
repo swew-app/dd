@@ -67,7 +67,7 @@ if (!function_exists('__dump')) {
             return;
         }
 
-        echo "<pre class='language-dd line-dd'>🔍 ⮕ $file:$line</pre>";
+        echo "<pre class='language-dd_line line-dd'><code class='language-dd_line'>🔍 ⮕ $file:$line</code></pre>";
         echo "<pre class='language-dd'><code class='language-dd'>$str</code></pre>";
 
         // don't forget to escap "\r\n"
@@ -94,14 +94,17 @@ Prism.languages.dd = {
     punctuation: /[{}[\];(),.:]/,
     comment: /\b(?:empty)\b/,
 };
+Prism.languages.dd_line = {
+    number: /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
+    comment: /[:]/,
+};
 })();
 </script>
 <style>
 code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:0 0;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}
 
-pre.language-dd {font-size:.8rem;}
-pre.line-dd {margin-bottom: 0;}
-pre .divider-dd:last-child { display: none; }
+pre.language-dd, pre.language-dd_line {font-size:.8rem; max-width: 980px; margin: 0.5em auto; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
+pre.language-dd_line {margin-bottom: 0;}
 </style>
 JS_PRISM;
 
