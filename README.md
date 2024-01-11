@@ -15,6 +15,7 @@ The simplest way to debug variables. As in Laravel.
 
 
 ![swew/dd](./assets/demo.png)
+![swew/dd](./assets/demo-browser.webp)
 
 # Installation
 

@@ -50,12 +50,11 @@ if (!function_exists('__dump')) {
     function __dump(): void
     {
         $str = '';
-        $isCli = defined('STDIN');
 
         ob_start();
         foreach (func_get_args() as $x) {
             var_dump($x);
-            echo $isCli ? "\n\n" : '<hr class="divider-dd">';
+            echo "\n\n";
         }
         $str = ob_get_clean();
 
@@ -63,7 +62,7 @@ if (!function_exists('__dump')) {
         $line = $backtrace[1]['line'];
         $file = $backtrace[1]['file'];
 
-        if ($isCli) {
+        if (defined('STDIN')) {
             echo PHP_EOL . "🔍\033[0;33m ⮕ \033[0;36m{$file}\033[90m:{$line}\033[0m" . PHP_EOL . $str . PHP_EOL;
             return;
         }
@@ -88,7 +87,7 @@ Prism.languages.dd = {
         lookbehind: true,
     },
     keyword: /\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while|array)\b/,
-    boolean: /\b(?:false|true)\b/,
+    boolean: /\b(?:false|true|NULL)\b/,
     function: /\b\w+(?=\()/,
     number: /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
     operator: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]\(\)/,
