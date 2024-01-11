@@ -13,6 +13,7 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
+    "minimum-stability": "dev",
     "autoload": {
         "files": [
             "src/dd.php"
